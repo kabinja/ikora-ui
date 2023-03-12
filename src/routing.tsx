@@ -1,7 +1,7 @@
-import { Spinner } from "@chakra-ui/react";
-import { Suspense, lazy } from "react";
-import { RouteObject } from "react-router-dom";
-import { MainLayout } from "src/ui/layout/MainLayout";
+import { Spinner } from '@chakra-ui/react'
+import { Suspense, lazy } from 'react'
+import { type RouteObject } from 'react-router-dom'
+import { MainLayout } from 'src/ui/layout/MainLayout'
 
 const Loading = () => {
   return (
@@ -12,48 +12,48 @@ const Loading = () => {
       color="blue.500"
       size="xl"
     />
-  );
-};
+  )
+}
 
 const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) => {
   return (
     <Suspense fallback={<Loading />}>
       <Component {...props} />
     </Suspense>
-  );
-};
+  )
+}
 
 // *  AUTHENTICATION PAGES
-const Login = Loadable(lazy(() => import("./pages/auth/login")));
-const Register = Loadable(lazy(() => import("./pages/auth/register")));
+const Login = Loadable(lazy(async () => await import('./pages/auth/login')))
+const Register = Loadable(lazy(async () => await import('./pages/auth/register')))
 
 //  * HOME PAGE
-const Home = Loadable(lazy(() => import("./pages/home"))); 
+const Home = Loadable(lazy(async () => await import('./pages/home')))
 
 //  * FEATURE PAGES
-const SuiteOverview = Loadable(lazy(() => import("./pages/suite/overview"))); 
-const SuiteHistory = Loadable(lazy(() => import("./pages/suite/history")));
-const ExecutionTree = Loadable(lazy(() => import("./pages/execution/tree")));
+const SuiteOverview = Loadable(lazy(async () => await import('./pages/suite/overview')))
+const SuiteHistory = Loadable(lazy(async () => await import('./pages/suite/history')))
+const ExecutionTree = Loadable(lazy(async () => await import('./pages/execution/tree')))
 
 // ERROR PAGES
-const Error404 = Loadable(lazy(() => import("./pages/error/not-found")));
+const Error404 = Loadable(lazy(async () => await import('./pages/error/not-found')))
 
 const routes: RouteObject[] = [
   {
-    path: "auth",
+    path: 'auth',
     children: [
       {
-        path: "login",
-        element: <Login />,
+        path: 'login',
+        element: <Login />
       },
       {
-        path: "register",
-        element: <Register />,
-      },
-    ],
+        path: 'register',
+        element: <Register />
+      }
+    ]
   },
   {
-    path: "/",
+    path: '/',
     element: <MainLayout />,
     children: [
       {
@@ -61,34 +61,34 @@ const routes: RouteObject[] = [
         element: <Home />
       },
       {
-        path: "suite",
+        path: 'suite',
         children: [
           {
-            path: "overview",
+            path: 'overview',
             element: <SuiteOverview />
           },
           {
-            path: "history/:id",
+            path: 'history/:id',
             element: <SuiteHistory />
           }
         ]
       },
       {
-        path: "execution",
+        path: 'execution',
         children: [
           {
-            path: "tree",
+            path: 'tree',
             element: <ExecutionTree />
           }
         ]
       }
 
-    ],
+    ]
   },
   {
-    path: "*",
+    path: '*',
     element: <Error404 />
   }
-];
+]
 
-export { routes };
+export { routes }

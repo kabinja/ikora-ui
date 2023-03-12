@@ -3,8 +3,8 @@ import {
   Container,
   Stack,
   Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+  useColorModeValue
+} from '@chakra-ui/react'
 
 const Logo = (props: any) => {
   return (
@@ -23,29 +23,29 @@ const Logo = (props: any) => {
         fill="#2F855A"
       />
     </svg>
-  );
-};
+  )
+}
 
 const PageFooter = () => {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bg={useColorModeValue('gray.50', 'gray.900')}
+      color={useColorModeValue('gray.700', 'gray.200')}
     >
       <Container
         as={Stack}
-        maxW={"6xl"}
+        maxW={'6xl'}
         py={4}
-        direction={{ base: "column", md: "row" }}
+        direction={{ base: 'column', md: 'row' }}
         spacing={4}
-        justify={{ base: "center", md: "space-between" }}
-        align={{ base: "center", md: "center" }}
+        justify={{ base: 'center', md: 'space-between' }}
+        align={{ base: 'center', md: 'center' }}
       >
         <Logo />
         <Text>© 2022 Ikora. All rights reserved</Text>
       </Container>
     </Box>
-  );
+  )
 }
 
-export {PageFooter}
+export { PageFooter }

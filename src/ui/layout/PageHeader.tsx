@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react'
 import {
   Box,
   Flex,
@@ -10,13 +10,12 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
-  Center,
-} from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+  Center
+} from '@chakra-ui/react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -25,16 +24,15 @@ const NavLink = ({ children }: { children: ReactNode }) => (
     rounded={'md'}
     _hover={{
       textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      bg: useColorModeValue('gray.200', 'gray.700')
     }}
     href={'#'}>
     {children}
   </Link>
-);
+)
 
 const PageHeader = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -83,7 +81,7 @@ const PageHeader = () => {
         </Flex>
       </Box>
     </>
-  );
+  )
 }
 
 export { PageHeader }

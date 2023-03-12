@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { Outlet } from "react-router-dom";
-import { PageFooter } from "./PageFooter";
-import { PageHeader } from "./PageHeader";
+import { type ReactNode } from 'react'
+import { Outlet } from 'react-router-dom'
+import { PageFooter } from './PageFooter'
+import { PageHeader } from './PageHeader'
 
-interface PageContent{
-    children?: ReactNode;
+interface PageContent {
+  children?: ReactNode
 
 }
 
@@ -19,7 +19,7 @@ const MainLayout = (props: PageContent) => {
         <PageFooter />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export { MainLayout }
