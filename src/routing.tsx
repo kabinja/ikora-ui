@@ -24,18 +24,20 @@ const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) => {
 };
 
 // *  AUTHENTICATION PAGES
-const Login = Loadable(lazy(() => import("./pages/login/login")));
-const Register = Loadable(lazy(() => import("./pages/register/register")));
+const Login = Loadable(lazy(() => import("./auth/login")));
+const Register = Loadable(lazy(() => import("./auth/register")));
 
 //  * HOME PAGE
-const TestHistory = Loadable(lazy(() => import("./pages/test-history/test-history")));
+const SuiteOverview = Loadable(lazy(() => import("./pages/suite/overview"))); 
+const SuiteHistory = Loadable(lazy(() => import("./pages/suite/history")));
+const ExecutionTree = Loadable(lazy(() => import("./pages/execution/tree")));
 
 // ERROR PAGES
 const Error404 = Loadable(lazy(() => import("./pages/page404/page404")));
 
 const routes: RouteObject[] = [
   {
-    path: "authentication",
+    path: "auth",
     children: [
       {
         path: "login",
@@ -52,9 +54,28 @@ const routes: RouteObject[] = [
     element: <MainLayout />,
     children: [
       {
-        path: "test-history",
-        element: <TestHistory />,
+        path: "suite",
+        children: [
+          {
+            path: "overview",
+            element: <SuiteOverview />
+          },
+          {
+            path: "history/:id",
+            element: <SuiteHistory />
+          }
+        ]
       },
+      {
+        path: "execution",
+        children: [
+          {
+            path: "tree",
+            element: <ExecutionTree />
+          }
+        ]
+      }
+
     ],
   },
   {
