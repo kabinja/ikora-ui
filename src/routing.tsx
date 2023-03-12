@@ -28,7 +28,7 @@ const Login = Loadable(lazy(() => import("./pages/login/login")));
 const Register = Loadable(lazy(() => import("./pages/register/register")));
 
 //  * HOME PAGE
-const Home = Loadable(lazy(() => import("./pages/test-history/test-history")));
+const TestHistory = Loadable(lazy(() => import("./pages/test-history/test-history")));
 
 // ERROR PAGES
 const Error404 = Loadable(lazy(() => import("./pages/page404/page404")));
@@ -52,8 +52,8 @@ const routes: RouteObject[] = [
     element: <MainLayout />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        path: "test-history",
+        element: <TestHistory />,
       },
     ],
   },
