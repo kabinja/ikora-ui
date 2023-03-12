@@ -24,16 +24,19 @@ const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) => {
 };
 
 // *  AUTHENTICATION PAGES
-const Login = Loadable(lazy(() => import("./auth/login")));
-const Register = Loadable(lazy(() => import("./auth/register")));
+const Login = Loadable(lazy(() => import("./pages/auth/login")));
+const Register = Loadable(lazy(() => import("./pages/auth/register")));
 
 //  * HOME PAGE
+const Home = Loadable(lazy(() => import("./pages/home"))); 
+
+//  * FEATURE PAGES
 const SuiteOverview = Loadable(lazy(() => import("./pages/suite/overview"))); 
 const SuiteHistory = Loadable(lazy(() => import("./pages/suite/history")));
 const ExecutionTree = Loadable(lazy(() => import("./pages/execution/tree")));
 
 // ERROR PAGES
-const Error404 = Loadable(lazy(() => import("./pages/page404/page404")));
+const Error404 = Loadable(lazy(() => import("./pages/error/not-found")));
 
 const routes: RouteObject[] = [
   {
@@ -53,6 +56,10 @@ const routes: RouteObject[] = [
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        index: true,
+        element: <Home />
+      },
       {
         path: "suite",
         children: [
