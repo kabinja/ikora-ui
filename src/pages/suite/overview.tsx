@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SuiteOverview = () => {
+const SuiteOverview: React.FC = () => {
   return <h1>Suite Overview</h1>
 }
 

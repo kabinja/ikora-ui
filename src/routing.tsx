@@ -1,9 +1,10 @@
+import * as React from 'react'
 import { Spinner } from '@chakra-ui/react'
 import { Suspense, lazy } from 'react'
 import { type RouteObject } from 'react-router-dom'
 import { MainLayout } from 'src/ui/layout/MainLayout'
 
-const Loading = () => {
+const Loading = (): React.ReactElement => {
   return (
     <Spinner
       thickness="4px"

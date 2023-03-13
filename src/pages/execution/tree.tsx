@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-const ExecutionTree = () => {
+const ExecutionTree: React.FC = () => {
   const { id } = useParams()
   return <h1>Execution Tree {id}</h1>
 }

@@ -1,20 +1,15 @@
-import { type ReactNode } from 'react'
+import * as React from 'react'
 import { Outlet } from 'react-router-dom'
 import { PageFooter } from './PageFooter'
 import { PageHeader } from './PageHeader'
 
-interface PageContent {
-  children?: ReactNode
-
-}
-
-const MainLayout = (props: PageContent) => {
+const MainLayout: React.FC = (): React.ReactElement => {
   return (
     <div>
       <div className="wrapper d-flex flex-column min-vh-100 bg-light">
         <PageHeader />
         <div className="body flex-grow-1 px-3">
-          { props.children || <Outlet /> }
+          <Outlet />
         </div>
         <PageFooter />
       </div>

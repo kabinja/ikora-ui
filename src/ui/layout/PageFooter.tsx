@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   Box,
   Container,
@@ -6,7 +7,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
-const Logo = (props: any) => {
+const Logo: React.FC = (props: any): React.ReactElement => {
   return (
     <svg
       height={32}
@@ -26,7 +27,7 @@ const Logo = (props: any) => {
   )
 }
 
-const PageFooter = () => {
+const PageFooter: React.FC = (): React.ReactElement => {
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
