@@ -16,6 +16,7 @@ const Loading = (): React.ReactElement => {
   )
 }
 
+// eslint-disable-next-line react/display-name
 const Loadable = (Component: React.ComponentType) => (props: JSX.IntrinsicAttributes) => {
   return (
     <Suspense fallback={<Loading />}>
