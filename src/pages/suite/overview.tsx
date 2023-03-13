@@ -1,7 +1,7 @@
-import React from 'react'
+import type React from 'react';
 
 const SuiteOverview: React.FC = () => {
-  return <h1>Suite Overview</h1>
-}
+  return <h1>Suite Overview</h1>;
+};
 
-export default SuiteOverview
+export default SuiteOverview;

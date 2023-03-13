@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { Outlet } from 'react-router-dom'
-import { PageFooter } from './PageFooter'
-import { PageHeader } from './PageHeader'
+import type * as React from 'react';
+import { Outlet } from 'react-router-dom';
+import { PageFooter } from './PageFooter';
+import { PageHeader } from './PageHeader';
 
 const MainLayout: React.FC = (): React.ReactElement => {
   return (
@@ -14,7 +14,7 @@ const MainLayout: React.FC = (): React.ReactElement => {
         <PageFooter />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { MainLayout }
+export { MainLayout };

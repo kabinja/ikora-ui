@@ -1,19 +1,10 @@
-import * as React from 'react'
-import {
-  Box,
-  Container,
-  Stack,
-  Text,
-  useColorModeValue
-} from '@chakra-ui/react'
-import { Logo } from 'src/ui/assets/logo'
+import type * as React from 'react';
+import { Box, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { Logo } from 'src/ui/assets/logo';
 
 const PageFooter: React.FC = (): React.ReactElement => {
   return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-    >
+    <Box bg={useColorModeValue('gray.50', 'gray.900')} color={useColorModeValue('gray.700', 'gray.200')}>
       <Container
         as={Stack}
         maxW={'6xl'}
@@ -27,7 +18,7 @@ const PageFooter: React.FC = (): React.ReactElement => {
         <Text>© 2022 Ikora. All rights reserved</Text>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export { PageFooter }
+export { PageFooter };

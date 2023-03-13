@@ -1,20 +1,12 @@
-import * as React from 'react'
-import { Spinner } from '@chakra-ui/react'
-import { Suspense, lazy } from 'react'
-import { type RouteObject } from 'react-router-dom'
-import { MainLayout } from 'src/ui/layout/MainLayout'
+import type * as React from 'react';
+import { Spinner } from '@chakra-ui/react';
+import { Suspense, lazy } from 'react';
+import { type RouteObject } from 'react-router-dom';
+import { MainLayout } from 'src/ui/layout/MainLayout';
 
 const Loading = (): React.ReactElement => {
-  return (
-    <Spinner
-      thickness="4px"
-      speed="0.65s"
-      emptyColor="gray.200"
-      color="blue.500"
-      size="xl"
-    />
-  )
-}
+  return <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />;
+};
 
 // eslint-disable-next-line react/display-name
 const Loadable = (Component: React.ComponentType) => (props: JSX.IntrinsicAttributes) => {
@@ -22,23 +14,23 @@ const Loadable = (Component: React.ComponentType) => (props: JSX.IntrinsicAttrib
     <Suspense fallback={<Loading />}>
       <Component {...props} />
     </Suspense>
-  )
-}
+  );
+};
 
 // *  AUTHENTICATION PAGES
-const Login = Loadable(lazy(async () => await import('./pages/auth/login')))
-const Register = Loadable(lazy(async () => await import('./pages/auth/register')))
+const Login = Loadable(lazy(async () => await import('./pages/auth/login')));
+const Register = Loadable(lazy(async () => await import('./pages/auth/register')));
 
 //  * HOME PAGE
-const Home = Loadable(lazy(async () => await import('./pages/home')))
+const Home = Loadable(lazy(async () => await import('./pages/home')));
 
 //  * FEATURE PAGES
-const SuiteOverview = Loadable(lazy(async () => await import('./pages/suite/overview')))
-const SuiteHistory = Loadable(lazy(async () => await import('./pages/suite/history')))
-const ExecutionTree = Loadable(lazy(async () => await import('./pages/execution/tree')))
+const SuiteOverview = Loadable(lazy(async () => await import('./pages/suite/overview')));
+const SuiteHistory = Loadable(lazy(async () => await import('./pages/suite/history')));
+const ExecutionTree = Loadable(lazy(async () => await import('./pages/execution/tree')));
 
 // ERROR PAGES
-const Error404 = Loadable(lazy(async () => await import('./pages/error/not-found')))
+const Error404 = Loadable(lazy(async () => await import('./pages/error/not-found')));
 
 const routes: RouteObject[] = [
   {
@@ -46,13 +38,13 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'login',
-        element: <Login />
+        element: <Login />,
       },
       {
         path: 'register',
-        element: <Register />
-      }
-    ]
+        element: <Register />,
+      },
+    ],
   },
   {
     path: '/',
@@ -60,37 +52,36 @@ const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
       {
         path: 'suite',
         children: [
           {
             path: 'overview',
-            element: <SuiteOverview />
+            element: <SuiteOverview />,
           },
           {
             path: 'history/:id',
-            element: <SuiteHistory />
-          }
-        ]
+            element: <SuiteHistory />,
+          },
+        ],
       },
       {
         path: 'execution',
         children: [
           {
             path: 'tree',
-            element: <ExecutionTree />
-          }
-        ]
-      }
-
-    ]
+            element: <ExecutionTree />,
+          },
+        ],
+      },
+    ],
   },
   {
     path: '*',
-    element: <Error404 />
-  }
-]
+    element: <Error404 />,
+  },
+];
 
-export { routes }
+export { routes };
