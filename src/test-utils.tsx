@@ -6,7 +6,8 @@ const AllProviders: React.FC = ({ children }: { children?: React.ReactNode }): R
   <ChakraProvider theme={theme}>{children}</ChakraProvider>
 )
 
-const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
-  render(ui, { wrapper: AllProviders, ...options })
+const customRender = (ui: React.ReactElement, options?: RenderOptions): React.ReactElement => {
+  return render(ui, { wrapper: AllProviders, ...options })
+}
 
 export { customRender as render }

@@ -16,7 +16,7 @@ const Loading = (): React.ReactElement => {
   )
 }
 
-const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) => {
+const Loadable = (Component: React.ComponentType) => (props: JSX.IntrinsicAttributes) => {
   return (
     <Suspense fallback={<Loading />}>
       <Component {...props} />
