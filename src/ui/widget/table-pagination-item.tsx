@@ -1,0 +1,52 @@
+import { Button, type ThemeTypings } from '@chakra-ui/react';
+
+interface PaginationItemProps {
+  isCurrent: boolean;
+  page: number;
+  onPageChange: (page: number) => void;
+  colorScheme: ThemeTypings['colorSchemes'];
+}
+
+const PaginationItem = ({
+  isCurrent = false,
+  page,
+  onPageChange,
+  colorScheme,
+}: PaginationItemProps): React.ReactElement => {
+  if (isCurrent) {
+    return (
+      <Button
+        size="sm"
+        fontSize="xs"
+        width="4"
+        colorScheme={colorScheme}
+        disabled
+        _disabled={{
+          bg: `${colorScheme}.500`,
+          cursor: 'pointer',
+        }}
+      >
+        {page}
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      size="sm"
+      fontSize="xs"
+      width="4"
+      bg="gray.100"
+      _hover={{
+        bg: 'gray.300',
+      }}
+      onClick={() => {
+        onPageChange(page);
+      }}
+    >
+      {page}
+    </Button>
+  );
+};
+
+export { PaginationItem };

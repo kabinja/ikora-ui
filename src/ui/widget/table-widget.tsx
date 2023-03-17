@@ -2,6 +2,7 @@ import type React from 'react';
 import { Table, TableContainer, Tbody, Th, Thead, Tr, Td } from '@chakra-ui/react';
 import { getCoreRowModel, useReactTable, flexRender } from '@tanstack/react-table';
 import type { ColumnDef } from '@tanstack/react-table';
+import Pagination from './table-pagination';
 
 interface ReactTableProps<T extends object> {
   data: T[];
@@ -41,6 +42,13 @@ const TableWidget = <T extends object>({ data, columns }: ReactTableProps<T>): R
           ))}
         </Tbody>
       </Table>
+      <Pagination
+        pageChangeHandler={function (pageNumber: number): void {
+          console.log('Hello');
+        }}
+        totalRows={5}
+        rowsPerPage={3}
+      />
     </TableContainer>
   );
 };
