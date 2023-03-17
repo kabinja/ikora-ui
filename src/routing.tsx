@@ -2,7 +2,7 @@ import type * as React from 'react';
 import { Spinner } from '@chakra-ui/react';
 import { Suspense, lazy } from 'react';
 import { type RouteObject } from 'react-router-dom';
-import { MainLayout } from 'src/ui/layout/MainLayout';
+import { MainLayout } from 'src/ui/layout/main-layout';
 
 const Loading = (): React.ReactElement => {
   return <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />;

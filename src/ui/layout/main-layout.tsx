@@ -1,7 +1,7 @@
 import type * as React from 'react';
 import { Outlet } from 'react-router-dom';
-import { PageFooter } from './PageFooter';
-import { PageHeader } from './PageHeader';
+import { PageFooter } from './page-footer';
+import { PageHeader } from './page-header';
 
 const MainLayout: React.FC = (): React.ReactElement => {
   return (

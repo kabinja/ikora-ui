@@ -1,7 +1,7 @@
 import axios, { type AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
 
-export const useApi = <T>(
+export const useGet = <T>(
   config: AxiosRequestConfig<unknown>,
   loadOnStart = true,
 ): [boolean, T | undefined, string, () => void] => {

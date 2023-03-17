@@ -1,8 +1,8 @@
-import { useApi } from 'src/api/api';
 import type React from 'react';
 import { TableWidget } from 'src/ui/widget/TableWidget';
 import { useMemo } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
+import { useGet } from 'src/api';
 
 export interface IJsonResposne {
   data: ISuiteData[];
@@ -56,7 +56,7 @@ const SuiteTable = (props: IJsonResposne): React.ReactElement => {
 };
 
 const SuiteOverview: React.FC = () => {
-  const [loading, suites, error] = useApi<IJsonResposne>({ method: 'GET', url: 'http://localhost:3030/overview' });
+  const [loading, suites, error] = useGet<IJsonResposne>({ method: 'GET', url: 'http://localhost:3030/overview' });
 
   if (loading) return <p>Loading ....</p>;
   if (error !== '') return <p>{error}</p>;
