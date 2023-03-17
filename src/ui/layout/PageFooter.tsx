@@ -14,7 +14,7 @@ const PageFooter: React.FC = (): React.ReactElement => {
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}
       >
-        <Logo />
+        <Logo size={32} />
         <Text>© 2022 Ikora. All rights reserved</Text>
       </Container>
     </Box>

@@ -1,20 +1,25 @@
 {
-    "suites": [
-        {
-            "id": "1",
-            "branch": "master",
-            "project": "My Project",
-            "test-count": 54,
-            "status": "PASSING",
-            "last-execution-date": "2023-01-21T11:40:22"
-        },
-        {
-            "id": "1",
-            "branch": "master",
-            "project": "My Project",
-            "test-count": 79,
-            "status": "FAILING",
-            "last-execution-date": "2023-01-11:14:35:43"
-        }
-    ]
+    "overview": {
+        "page": 1,
+        "per_page": 20,
+        "total": 2,
+        "data": [
+            {
+                "id": "1",
+                "branch": "master",
+                "project": "My Project",
+                "tests": 54,
+                "status": "PASSING",
+                "last_execution": "2023-01-21T11:40:22"
+            },
+            {
+                "id": "1",
+                "branch": "master",
+                "project": "My Project",
+                "tests": 79,
+                "status": "FAILING",
+                "last_execution": "2023-01-11:14:35:43"
+            }
+        ]
+    }
 }

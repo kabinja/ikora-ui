@@ -1,31 +1,38 @@
-import axios from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
+import { useEffect, useState } from 'react';
 
-interface Params {
-  baseUrl: string;
-  headers: object;
-  method: string;
-}
+export const useApi = <T>(
+  config: AxiosRequestConfig<unknown>,
+  loadOnStart = true,
+): [boolean, T | undefined, string, () => void] => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<T>();
+  const [error, setError] = useState('');
 
-const getConfig: Params = {
-  baseUrl: 'https://jsonplaceholder.typicode.com',
-  headers: {
-    Authorization: '',
-  },
-  method: 'get',
-};
+  useEffect(() => {
+    if (loadOnStart) sendRequest();
+    else setLoading(false);
+  }, []);
 
-export const getApi = async (url: string, data: string): Promise<object> => {
-  return await axios({ ...getConfig, url: `${getConfig.baseUrl}/${url}/${data}` })
-    .then((response) => {
-      return {
-        status: response.status,
-        data: response.data,
-      };
-    })
-    .catch((error) => {
-      return {
-        status: error.status,
-        data: error.response,
-      };
-    });
+  const request = (): void => {
+    sendRequest();
+  };
+
+  const sendRequest = (): void => {
+    setLoading(true);
+
+    axios(config)
+      .then((response) => {
+        setError('');
+        setData(response.data);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  return [loading, data, error, request];
 };

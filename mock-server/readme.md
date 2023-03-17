@@ -10,8 +10,8 @@ sudo npm install -g json-server
 
 ## Launching
 
-The following command should be executed from the root of the project.
+The following command should be executed from the `mock-server` directory.
 
 ```sh
-json-server --watch mock-api.json --port 3030
+json-server --watch db.json --port 3030
 ```
