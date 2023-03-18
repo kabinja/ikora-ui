@@ -52,7 +52,7 @@ const SuiteTable = (props: IJsonResposne): React.ReactElement => {
     [],
   );
 
-  return <TableWidget data={props.data} columns={columns} />;
+  return <TableWidget data={props.data} columns={columns} currentPage={props.page} totalPage={props.total} />;
 };
 
 const SuiteOverview: React.FC = () => {

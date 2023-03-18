@@ -7,9 +7,16 @@ import Pagination from './table-pagination';
 interface ReactTableProps<T extends object> {
   data: T[];
   columns: Array<ColumnDef<T>>;
+  currentPage: number;
+  totalPage: number;
 }
 
-const TableWidget = <T extends object>({ data, columns }: ReactTableProps<T>): React.ReactElement => {
+const TableWidget = <T extends object>({
+  data,
+  columns,
+  currentPage,
+  totalPage,
+}: ReactTableProps<T>): React.ReactElement => {
   const table = useReactTable({
     data,
     columns,
@@ -44,10 +51,10 @@ const TableWidget = <T extends object>({ data, columns }: ReactTableProps<T>): R
       </Table>
       <Pagination
         pageChangeHandler={function (pageNumber: number): void {
-          console.log('Hello');
+          console.log(pageNumber);
         }}
-        totalRows={5}
-        rowsPerPage={3}
+        currentPage={currentPage}
+        totalPage={totalPage}
       />
     </TableContainer>
   );
