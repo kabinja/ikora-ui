@@ -2,7 +2,7 @@ import axios, { type AxiosRequestConfig } from 'axios';
 import { useEffect, useMemo, useState } from 'react';
 
 export const useGet = <T>(props: AxiosRequestConfig<unknown>): [boolean, T | undefined, string] => {
-  const config = useMemo(() => ({ ...props }), []);
+  const config = useMemo(() => ({ ...props }), [props.url]);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<T>();
   const [error, setError] = useState('');
@@ -12,7 +12,6 @@ export const useGet = <T>(props: AxiosRequestConfig<unknown>): [boolean, T | und
   }, [config]);
 
   const sendRequest = (): void => {
-    console.log(config);
     setLoading(true);
 
     axios(config)

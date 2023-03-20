@@ -25,6 +25,12 @@ const TableWidget = <T extends object>({
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const onPageChange = (page: number): void => {
+    if (page >= 1 && page <= totalPage) {
+      pageChangeHandler(page);
+    }
+  };
+
   return (
     <TableContainer>
       <Table className="simple">
@@ -51,7 +57,7 @@ const TableWidget = <T extends object>({
           ))}
         </Tbody>
       </Table>
-      <Pagination pageChangeHandler={pageChangeHandler} currentPage={currentPage} totalPage={totalPage} />
+      <Pagination pageChangeHandler={onPageChange} currentPage={currentPage} totalPage={totalPage} />
     </TableContainer>
   );
 };

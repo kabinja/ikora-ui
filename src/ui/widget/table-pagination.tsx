@@ -18,7 +18,6 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
     pageChangeHandler(currentPage - 1);
   };
   const onPageSelect = (pageSelected: number): void => {
-    console.log('selected page: ' + pageSelected.toString());
     pageChangeHandler(pageSelected);
   };
 
@@ -27,17 +26,15 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
       {totalPage > 1 ? (
         <Stack direction="row" mt="8" justify="flex-end" align="center" spacing="6">
           <Stack direction="row" spacing="2">
-            if (currentPage != 1)
-            {
-              <PaginationItem
-                key={1}
-                isCurrent={false}
-                page={0}
-                iconInfo={{ icon: <FaBackward />, ariaLabel: 'Previous' }}
-                onPageChange={onPrevPage}
-                colorScheme={'red'}
-              />
-            }
+            <PaginationItem
+              key={1}
+              isCurrent={false}
+              page={0}
+              iconInfo={{ icon: <FaBackward />, ariaLabel: 'Previous' }}
+              onPageChange={onPrevPage}
+              colorScheme={'red'}
+              isDisabled={currentPage === 1}
+            />
             {pagesArr.map((num) => (
               <PaginationItem
                 key={num}
@@ -45,6 +42,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
                 page={num}
                 onPageChange={onPageSelect}
                 colorScheme={'red'}
+                isDisabled={false}
               />
             ))}
             if (currentPage != totalPage)
@@ -56,6 +54,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
                 iconInfo={{ icon: <FaForward />, ariaLabel: 'Previous' }}
                 onPageChange={onNextPage}
                 colorScheme={'red'}
+                isDisabled={currentPage < totalPage}
               />
             }
           </Stack>

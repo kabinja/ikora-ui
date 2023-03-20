@@ -61,9 +61,9 @@ const SuiteTable = (props: SuiteTableProps): React.ReactElement => {
         accessorKey: 'last_execution',
       },
     ],
-    [props.page],
+    [],
   );
-  console.log('page: ' + props.page.toString());
+
   return (
     <TableWidget
       data={props.data}
@@ -89,7 +89,6 @@ const SuiteOverview: React.FC = () => {
   const [url, setUrl] = useState('http://localhost:3030/overview/1');
 
   const updatePage = (page: number): void => {
-    console.log('update page: ' + page.toString());
     setUrl(`http://localhost:3030/overview/${page}`);
   };
 

@@ -11,6 +11,7 @@ interface PaginationItemProps {
   iconInfo?: IconButtonProps;
   onPageChange: (page: number) => void;
   colorScheme: ThemeTypings['colorSchemes'];
+  isDisabled: boolean;
 }
 
 const PaginationItem = ({
@@ -19,6 +20,7 @@ const PaginationItem = ({
   iconInfo,
   onPageChange,
   colorScheme,
+  isDisabled,
 }: PaginationItemProps): React.ReactElement => {
   if (isCurrent) {
     return (
@@ -27,7 +29,7 @@ const PaginationItem = ({
         fontSize="xs"
         width="4"
         colorScheme={colorScheme}
-        disabled
+        disabled={isDisabled}
         _disabled={{
           bg: `${colorScheme}.500`,
           cursor: 'pointer',
