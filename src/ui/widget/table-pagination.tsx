@@ -18,6 +18,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
     pageChangeHandler(currentPage - 1);
   };
   const onPageSelect = (pageSelected: number): void => {
+    console.log('selected page: ' + pageSelected.toString());
     pageChangeHandler(pageSelected);
   };
 
@@ -33,7 +34,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
                 isCurrent={false}
                 page={0}
                 iconInfo={{ icon: <FaBackward />, ariaLabel: 'Previous' }}
-                onPageChange={onPageSelect}
+                onPageChange={onPrevPage}
                 colorScheme={'red'}
               />
             }
@@ -42,7 +43,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
                 key={num}
                 isCurrent={num === currentPage}
                 page={num}
-                onPageChange={onPrevPage}
+                onPageChange={onPageSelect}
                 colorScheme={'red'}
               />
             ))}

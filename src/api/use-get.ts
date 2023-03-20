@@ -1,24 +1,18 @@
 import axios, { type AxiosRequestConfig } from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-export const useGet = <T>(
-  config: AxiosRequestConfig<unknown>,
-  loadOnStart = true,
-): [boolean, T | undefined, string, () => void] => {
+export const useGet = <T>(props: AxiosRequestConfig<unknown>): [boolean, T | undefined, string] => {
+  const config = useMemo(() => ({ ...props }), []);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<T>();
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (loadOnStart) sendRequest();
-    else setLoading(false);
-  }, []);
-
-  const request = (): void => {
     sendRequest();
-  };
+  }, [config]);
 
   const sendRequest = (): void => {
+    console.log(config);
     setLoading(true);
 
     axios(config)
@@ -34,5 +28,5 @@ export const useGet = <T>(
       });
   };
 
-  return [loading, data, error, request];
+  return [loading, data, error];
 };

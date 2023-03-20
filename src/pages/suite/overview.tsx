@@ -1,17 +1,17 @@
 import type React from 'react';
 import { TableWidget } from 'src/ui/widget';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useGet } from 'src/api';
 
-export interface IJsonResposne {
+interface IJsonResponse {
   data: ISuiteData[];
   page: number;
   per_page: number;
   total: number;
 }
 
-export interface ISuiteData {
+interface ISuiteData {
   id: number;
   project: string;
   branch: string;
@@ -20,7 +20,19 @@ export interface ISuiteData {
   status: string;
 }
 
-const SuiteTable = (props: IJsonResposne): React.ReactElement => {
+interface TableBuilderProps {
+  url: string;
+  pageChangeHandler: (currentPage: number) => void;
+}
+
+interface SuiteTableProps {
+  page: number;
+  data: ISuiteData[];
+  total: number;
+  pageChangeHandler: (currentPage: number) => void;
+}
+
+const SuiteTable = (props: SuiteTableProps): React.ReactElement => {
   const columns = useMemo<Array<ColumnDef<ISuiteData>>>(
     () => [
       {
@@ -49,20 +61,39 @@ const SuiteTable = (props: IJsonResposne): React.ReactElement => {
         accessorKey: 'last_execution',
       },
     ],
-    [],
+    [props.page],
   );
-
-  return <TableWidget data={props.data} columns={columns} currentPage={props.page} totalPage={props.total} />;
+  console.log('page: ' + props.page.toString());
+  return (
+    <TableWidget
+      data={props.data}
+      columns={columns}
+      currentPage={props.page}
+      totalPage={props.total}
+      pageChangeHandler={props.pageChangeHandler}
+    />
+  );
 };
 
-const SuiteOverview: React.FC = () => {
-  const [loading, suites, error] = useGet<IJsonResposne>({ method: 'GET', url: 'http://localhost:3030/overview' });
+const TableBuilder = (props: TableBuilderProps): React.ReactElement => {
+  const [loading, data, error] = useGet<IJsonResponse>({ method: 'GET', url: props.url });
 
   if (loading) return <p>Loading ....</p>;
   if (error !== '') return <p>{error}</p>;
-  if (suites == null) return <p>Data was null</p>;
+  if (data == null) return <p>Data was null</p>;
 
-  return <SuiteTable {...suites} />;
+  return <SuiteTable pageChangeHandler={props.pageChangeHandler} {...data} />;
+};
+
+const SuiteOverview: React.FC = () => {
+  const [url, setUrl] = useState('http://localhost:3030/overview/1');
+
+  const updatePage = (page: number): void => {
+    console.log('update page: ' + page.toString());
+    setUrl(`http://localhost:3030/overview/${page}`);
+  };
+
+  return <TableBuilder url={url} pageChangeHandler={updatePage} />;
 };
 
 export default SuiteOverview;
