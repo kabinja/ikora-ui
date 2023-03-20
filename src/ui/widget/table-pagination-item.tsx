@@ -29,7 +29,6 @@ const PaginationItem = ({
         fontSize="xs"
         width="4"
         colorScheme={colorScheme}
-        disabled={isDisabled}
         _disabled={{
           bg: `${colorScheme}.500`,
           cursor: 'pointer',
@@ -47,6 +46,7 @@ const PaginationItem = ({
         size="sm"
         fontSize="xs"
         width="4"
+        isDisabled={isDisabled}
         bg="gray.100"
         _hover={{
           bg: 'gray.300',

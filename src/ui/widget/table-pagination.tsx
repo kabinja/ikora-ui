@@ -54,7 +54,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
                 iconInfo={{ icon: <FaForward />, ariaLabel: 'Previous' }}
                 onPageChange={onNextPage}
                 colorScheme={'red'}
-                isDisabled={currentPage < totalPage}
+                isDisabled={currentPage === totalPage}
               />
             }
           </Stack>
