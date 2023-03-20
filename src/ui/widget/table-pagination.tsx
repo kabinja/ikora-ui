@@ -27,7 +27,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
         <Stack direction="row" mt="8" justify="flex-end" align="center" spacing="6">
           <Stack direction="row" spacing="2">
             <PaginationItem
-              key={1}
+              key="back"
               isCurrent={false}
               page={0}
               iconInfo={{ icon: <FaBackward />, ariaLabel: 'Previous' }}
@@ -48,7 +48,7 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
             if (currentPage != totalPage)
             {
               <PaginationItem
-                key={1}
+                key="next"
                 isCurrent={false}
                 page={0}
                 iconInfo={{ icon: <FaForward />, ariaLabel: 'Previous' }}
