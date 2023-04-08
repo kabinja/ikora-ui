@@ -1,5 +1,5 @@
 import type React from 'react';
-import { TableWidget } from 'src/ui/component';
+import { TableComponent } from './src/ui/component/table';
 import { useMemo, useState } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useGet } from 'src/api';
