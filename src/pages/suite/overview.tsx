@@ -1,5 +1,5 @@
 import type React from 'react';
-import { TableComponent } from './src/ui/component/table';
+import { TableComponent } from 'src/ui/component/table';
 import { useMemo, useState } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useGet } from 'src/api';
@@ -65,7 +65,7 @@ const SuiteTable = (props: SuiteTableProps): React.ReactElement => {
   );
 
   return (
-    <TableWidget
+    <TableComponent
       data={props.data}
       columns={columns}
       currentPage={props.page}

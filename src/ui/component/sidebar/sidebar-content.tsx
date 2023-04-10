@@ -1,35 +1,37 @@
-import { Box, Button, Flex, Link, Stack, Text, useColorModeValue } from '@chakra-ui/react';
-import IconBox from 'components/Icons/IconBox';
-import { CreativeTimLogo } from 'components/Icons/Icons';
-import { Separator } from 'components/Separator/Separator';
-import { SidebarHelp } from 'components/Sidebar/SidebarHelp';
-import React from 'react';
+import { Box, Button, Flex, Icon, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { IconBox } from 'src/ui/component/icon-box';
+import type React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { type RouteDefinition } from 'src/routing';
 
-const SidebarContent = (): React.ReactElement => {
+interface SidebarContentProps {
+  logoText: string;
+  routes: RouteDefinition[];
+}
+
+const SidebarContent = (props: SidebarContentProps): React.ReactElement => {
   const location = useLocation();
-  const [state, setState] = React.useState({});
+  const activeBg = useColorModeValue('white', 'gray.700');
+  const inactiveBg = useColorModeValue('white', 'gray.700');
+  const activeColor = useColorModeValue('gray.700', 'white');
+  const inactiveColor = useColorModeValue('gray.400', 'gray.400');
 
-  // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName) => {
+  const activeRoute = (routeName: string): string => {
     return location.pathname === routeName ? 'active' : '';
   };
-  const createLinks = (routes) => {
-    // Chakra Color Mode
-    const activeBg = useColorModeValue('white', 'gray.700');
-    const inactiveBg = useColorModeValue('white', 'gray.700');
-    const activeColor = useColorModeValue('gray.700', 'white');
-    const inactiveColor = useColorModeValue('gray.400', 'gray.400');
 
-    return routes.map((prop, key) => {
-      if (prop.redirect) {
-        return null;
-      }
-      if (prop.category) {
-        const st = {};
-        st[prop.state] = !state[prop.state];
+  const isCategory = (route: RouteDefinition): boolean => {
+    if (route.children === undefined) {
+      return false;
+    }
+    return route.children.length > 0;
+  };
+
+  const createLinks = (routes: RouteDefinition[]): React.ReactElement[] => {
+    return routes.map((route) => {
+      if (isCategory(route)) {
         return (
-          <div key={prop.name}>
+          <div key={route.name}>
             <Text
               color={activeColor}
               fontWeight="bold"
@@ -43,15 +45,16 @@ const SidebarContent = (): React.ReactElement => {
               }}
               py="12px"
             >
-              {document.documentElement.dir === 'rtl' ? prop.rtlName : prop.name}
+              {route.name}
             </Text>
-            {createLinks(prop.views)}
+            {createLinks(route.children as RouteDefinition[])}
           </div>
         );
       }
+
       return (
-        <NavLink to={prop.layout + prop.path} key={prop.name}>
-          {activeRoute(prop.layout + prop.path) === 'active' ? (
+        <NavLink to={route.path as string} key={route.name}>
+          {activeRoute(route.path as string) === 'active' ? (
             <Button
               boxSize="initial"
               justifyContent="flex-start"
@@ -69,7 +72,6 @@ const SidebarContent = (): React.ReactElement => {
               }}
               py="12px"
               borderRadius="15px"
-              _hover="none"
               w="100%"
               _active={{
                 bg: 'inherit',
@@ -81,15 +83,15 @@ const SidebarContent = (): React.ReactElement => {
               }}
             >
               <Flex>
-                {typeof prop.icon === 'string' ? (
-                  <Icon>{prop.icon}</Icon>
+                {typeof route.icon === 'string' ? (
+                  <Icon>{route.icon}</Icon>
                 ) : (
                   <IconBox bg="teal.300" color="white" h="30px" w="30px" me="12px">
-                    {prop.icon}
+                    {route.icon}
                   </IconBox>
                 )}
                 <Text color={activeColor} my="auto" fontSize="sm">
-                  {document.documentElement.dir === 'rtl' ? prop.rtlName : prop.name}
+                  {route.name}
                 </Text>
               </Flex>
             </Button>
@@ -111,7 +113,6 @@ const SidebarContent = (): React.ReactElement => {
                 xl: '16px',
               }}
               borderRadius="15px"
-              _hover="none"
               w="100%"
               _active={{
                 bg: 'inherit',
@@ -123,15 +124,15 @@ const SidebarContent = (): React.ReactElement => {
               }}
             >
               <Flex>
-                {typeof prop.icon === 'string' ? (
-                  <Icon>{prop.icon}</Icon>
+                {typeof route.icon === 'string' ? (
+                  <Icon>{route.icon}</Icon>
                 ) : (
                   <IconBox bg={inactiveBg} color="teal.300" h="30px" w="30px" me="12px">
-                    {prop.icon}
+                    {route.icon}
                   </IconBox>
                 )}
                 <Text color={inactiveColor} my="auto" fontSize="sm">
-                  {document.documentElement.dir === 'rtl' ? prop.rtlName : prop.name}
+                  {route.name}
                 </Text>
               </Flex>
             </Button>
@@ -141,14 +142,13 @@ const SidebarContent = (): React.ReactElement => {
     });
   };
 
-  const links = <>{createLinks(routes)}</>;
+  const links = <>{createLinks(props.routes)}</>;
 
   return (
     <>
       <Stack direction="column" mb="40px">
         <Box>{links}</Box>
       </Stack>
-      <SidebarHelp />
     </>
   );
 };

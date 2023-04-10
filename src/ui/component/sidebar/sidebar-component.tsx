@@ -1,17 +1,22 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
+import type React from 'react';
 
 import { SidebarContent } from './sidebar-content';
+import { type RouteDefinition } from 'src/routing';
 
-const Sidebar = (): React.ReactElement => {
-  const mainPanel = React.useRef();
+interface SidebarProps {
+  logoText: string;
+  routes: RouteDefinition[];
+}
+
+const Sidebar = ({ logoText, routes }: SidebarProps): React.ReactElement => {
   const variantChange = '0.2s linear';
   const sidebarBg = useColorModeValue('white', 'gray.700');
   const sidebarRadius = '16px';
   const sidebarMargins = '16px 0px 16px 16px';
 
   return (
-    <Box ref={mainPanel}>
+    <Box>
       <Box display={{ sm: 'none', xl: 'block' }} position="fixed">
         <Box
           bg={sidebarBg}
@@ -30,12 +35,7 @@ const Sidebar = (): React.ReactElement => {
           m={sidebarMargins}
           borderRadius={sidebarRadius}
         >
-          <SidebarContent
-            routes={routes}
-            logoText={'PURITY UI DASHBOARD'}
-            display="none"
-            sidebarVariant={sidebarVariant}
-          />
+          <SidebarContent routes={routes} logoText={logoText} />
         </Box>
       </Box>
     </Box>

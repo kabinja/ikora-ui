@@ -1,38 +1,28 @@
 import type * as React from 'react';
 import { Outlet } from 'react-router-dom';
+import { Sidebar } from 'src/ui/component/sidebar';
+import { MainPanel } from './main-panel';
+import { PanelContent } from './panel-content';
+import { PanelContainer } from './panel-container';
+import { PageFooter } from './page-footer';
+import { routes } from 'src/routing';
 
 const MainLayout: React.FC = (): React.ReactElement => {
   return (
     <>
-      <Sidebar
-        routes={routes}
-        logoText={'PURITY UI DASHBOARD'}
-        display="none"
-        sidebarVariant={sidebarVariant}
-        {...rest}
-      />
+      <Sidebar routes={routes} logoText={'IKORA'} />
       <MainPanel
         w={{
           base: '100%',
           xl: 'calc(100% - 275px)',
         }}
       >
-        <Portal>
-          <AdminNavbar
-            onOpen={onOpen}
-            logoText={'PURITY UI DASHBOARD'}
-            brandText={getActiveRoute(routes)}
-            secondary={getActiveNavbar(routes)}
-            fixed={fixed}
-            {...rest}
-          />
-        </Portal>
         <PanelContent>
           <PanelContainer>
             <Outlet />
           </PanelContainer>
         </PanelContent>
-        <Footer />
+        <PageFooter />
       </MainPanel>
     </>
   );

@@ -1,8 +1,15 @@
 import type * as React from 'react';
 import { Spinner } from '@chakra-ui/react';
 import { Suspense, lazy } from 'react';
-import { type RouteObject } from 'react-router-dom';
 import { MainLayout } from 'src/ui/layout/main-layout';
+import { type RouteObject } from 'react-router-dom';
+import { type IconType } from 'react-icons/lib';
+
+declare type RouteDefinition = RouteObject & {
+  children?: RouteDefinition[];
+  name: string;
+  icon?: IconType;
+};
 
 const Loading = (): React.ReactElement => {
   return <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />;
@@ -32,45 +39,56 @@ const ExecutionTree = Loadable(lazy(async () => await import('./pages/execution/
 // ERROR PAGES
 const Error404 = Loadable(lazy(async () => await import('./pages/error/not-found')));
 
-const routes: RouteObject[] = [
+const routes: RouteDefinition[] = [
   {
+    name: 'Authentication',
     path: 'auth',
     children: [
       {
+        name: 'Login',
+        index: true,
         path: 'login',
         element: <Login />,
       },
       {
+        name: 'Register',
         path: 'register',
         element: <Register />,
       },
     ],
   },
   {
+    name: 'Main',
     path: '/',
     element: <MainLayout />,
     children: [
       {
+        name: 'Home',
         index: true,
         element: <Home />,
       },
       {
+        name: 'Suite',
         path: 'suite',
         children: [
           {
+            name: 'Overview',
             path: 'overview',
             element: <SuiteOverview />,
           },
           {
+            name: 'Hisotry',
             path: 'history/:id',
             element: <SuiteHistory />,
           },
         ],
       },
       {
+        name: 'Execution',
         path: 'execution',
         children: [
           {
+            name: 'Tree',
             path: 'tree',
             element: <ExecutionTree />,
           },
@@ -79,9 +97,10 @@ const routes: RouteObject[] = [
     ],
   },
   {
+    name: 'Page not found',
     path: '*',
     element: <Error404 />,
   },
 ];
 
-export { routes };
+export { routes, type RouteDefinition };
