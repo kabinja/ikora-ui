@@ -1,5 +1,5 @@
 import type * as React from 'react';
-import { Box, Container, Flex, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { Container, Flex, Stack, Text } from '@chakra-ui/react';
 import { Logo } from 'src/ui/assets/logo';
 
 const PageFooter: React.FC = () => {

@@ -2,14 +2,15 @@ import type * as React from 'react';
 import { Spinner } from '@chakra-ui/react';
 import { Suspense, lazy } from 'react';
 import { MainLayout } from 'src/ui/layout/main-layout';
-import { type RouteObject } from 'react-router-dom';
 import { type IconType } from 'react-icons/lib';
 
-declare type RouteDefinition = RouteObject & {
+interface RouteDefinition {
   children?: RouteDefinition[];
   name: string;
   icon?: IconType;
-};
+  element?: JSX.Element;
+  path?: string;
+}
 
 const Loading = (): React.ReactElement => {
   return <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />;
@@ -46,7 +47,6 @@ const routes: RouteDefinition[] = [
     children: [
       {
         name: 'Login',
-        index: true,
         path: 'login',
         element: <Login />,
       },
@@ -64,7 +64,6 @@ const routes: RouteDefinition[] = [
     children: [
       {
         name: 'Home',
-        index: true,
         element: <Home />,
       },
       {
