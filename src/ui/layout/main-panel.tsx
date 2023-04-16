@@ -1,10 +1,15 @@
 import type React from 'react';
-import { Box, useStyleConfig } from '@chakra-ui/react';
+import { Box, type ThemingProps, useStyleConfig } from '@chakra-ui/react';
+import { type Dict } from '@chakra-ui/utils';
 
-const MainPanel = (props): React.ReactElement => {
+interface MainPanelProps {
+  variant: ThemingProps<string> & Dict;
+  children: React.ReactElement;
+}
+
+const MainPanel = (props: MainPanelProps): React.ReactElement => {
   const { variant, children, ...rest } = props;
   const styles = useStyleConfig('MainPanel', { variant });
-  // Pass the computed styles into the `__css` prop
   return (
     <Box __css={styles} {...rest}>
       {children}

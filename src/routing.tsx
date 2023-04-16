@@ -2,14 +2,15 @@ import type * as React from 'react';
 import { Spinner } from '@chakra-ui/react';
 import { Suspense, lazy } from 'react';
 import { MainLayout } from 'src/ui/layout/main-layout';
-import { type IconType } from 'react-icons/lib';
+import { FaBook, FaHistory, FaHome, FaRegistered, FaTree, FaUser } from 'react-icons/fa';
 
 interface RouteDefinition {
   children?: RouteDefinition[];
   name: string;
-  icon?: IconType;
+  icon?: JSX.Element;
   element?: JSX.Element;
   path?: string;
+  navbar?: true;
 }
 
 const Loading = (): React.ReactElement => {
@@ -48,47 +49,60 @@ const routes: RouteDefinition[] = [
       {
         name: 'Login',
         path: 'login',
+        icon: <FaUser />,
         element: <Login />,
       },
       {
         name: 'Register',
         path: 'register',
+        icon: <FaRegistered />,
         element: <Register />,
       },
     ],
   },
   {
+    navbar: true,
     name: 'Main',
     path: '/',
     element: <MainLayout />,
     children: [
       {
+        navbar: true,
         name: 'Home',
         element: <Home />,
+        icon: <FaHome />,
       },
       {
+        navbar: true,
         name: 'Suite',
         path: 'suite',
         children: [
           {
+            navbar: true,
             name: 'Overview',
             path: 'overview',
+            icon: <FaBook />,
             element: <SuiteOverview />,
-          },
-          {
-            name: 'Hisotry',
-            path: 'history/:id',
-            element: <SuiteHistory />,
           },
         ],
       },
       {
+        navbar: true,
         name: 'Execution',
         path: 'execution',
         children: [
           {
+            navbar: true,
+            name: 'Hisotry',
+            path: 'history/:id',
+            icon: <FaHistory />,
+            element: <SuiteHistory />,
+          },
+          {
+            navbar: true,
             name: 'Tree',
             path: 'tree',
+            icon: <FaTree />,
             element: <ExecutionTree />,
           },
         ],

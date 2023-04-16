@@ -17,12 +17,14 @@ const MainLayout: React.FC = (): React.ReactElement => {
           xl: 'calc(100% - 275px)',
         }}
       >
-        <PanelContent>
-          <PanelContainer>
-            <Outlet />
-          </PanelContainer>
-        </PanelContent>
-        <PageFooter />
+        <>
+          <PanelContent>
+            <PanelContainer>
+              <Outlet />
+            </PanelContainer>
+          </PanelContent>
+          <PageFooter />
+        </>
       </MainPanel>
     </>
   );

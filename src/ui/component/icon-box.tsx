@@ -1,7 +1,13 @@
 import type React from 'react';
-import { Flex } from '@chakra-ui/react';
+import { Flex, type ThemingProps } from '@chakra-ui/react';
+import { type Dict } from '@chakra-ui/utils';
 
-const IconBox = (props): React.ReactElement => {
+interface IconBoxProps {
+  variant?: ThemingProps<string> & Dict;
+  children?: React.ReactElement;
+}
+
+const IconBox = (props: IconBoxProps): React.ReactElement => {
   const { children, ...rest } = props;
 
   return (

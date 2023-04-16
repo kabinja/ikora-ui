@@ -1,7 +1,13 @@
 import type React from 'react';
-import { Flex } from '@chakra-ui/react';
+import { Flex, type ThemingProps } from '@chakra-ui/react';
+import { type Dict } from '@chakra-ui/utils';
 
-const Separator = (props): React.ReactElement => {
+interface SeparatorProps {
+  variant?: ThemingProps<string> & Dict;
+  children?: React.ReactElement;
+}
+
+const Separator = (props: SeparatorProps): React.ReactElement => {
   const { variant, children, ...rest } = props;
   return (
     <Flex
