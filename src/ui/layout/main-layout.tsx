@@ -1,11 +1,11 @@
 import type * as React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Sidebar } from 'src/ui/component/sidebar';
+import { Sidebar } from 'ui/component/sidebar';
 import { MainPanel } from './main-panel';
 import { PanelContent } from './panel-content';
 import { PanelContainer } from './panel-container';
 import { PageFooter } from './page-footer';
-import { routes } from 'src/routing';
+import { routes } from 'routing';
 
 const MainLayout: React.FC = (): React.ReactElement => {
   return (

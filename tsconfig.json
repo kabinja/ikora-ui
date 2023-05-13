@@ -22,28 +22,12 @@
     "jsx": "react-jsx",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": ".",
-    "paths": {
-      "@api/*": [
-        "src/api/*"
-      ],
-      "@config/*": [
-        "src/config/*"
-      ],
-      "@features/*": [
-        "src/features/*"
-      ],
-      "@ui/*": [
-        "src/ui/*"
-      ],
-      "@typings/*": [
-        "src/typings/*"
-      ]
-    },
+    "baseUrl": "src"
   },
   "include": [
     "./src/**/*.ts",
-    "./src/**/*.tsx"
+    "./src/**/*.tsx",
+    "./vite.config.ts"
   ],
   "exclude": [
     "node_modules",

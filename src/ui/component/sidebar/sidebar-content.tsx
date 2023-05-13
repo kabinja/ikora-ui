@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Icon, Stack, Text, useColorModeValue } from '@chakra-ui/react';
-import { IconBox } from 'src/ui/component/icon-box';
+import { IconBox } from 'ui/component/icon-box';
 import type React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { type RouteDefinition } from 'src/routing';
+import { type RouteDefinition } from 'routing';
 
 interface SidebarContentProps {
   logoText: string;
@@ -32,26 +32,7 @@ const SidebarContent = (props: SidebarContentProps): React.ReactElement => {
       .filter((route) => route.navbar)
       .map((route) => {
         if (isCategory(route)) {
-          return (
-            <div key={route.name}>
-              <Text
-                color={activeColor}
-                fontWeight="bold"
-                mb={{
-                  xl: '12px',
-                }}
-                mx="auto"
-                ps={{
-                  sm: '10px',
-                  xl: '16px',
-                }}
-                py="12px"
-              >
-                {route.name}
-              </Text>
-              {createLinks(route.children as RouteDefinition[])}
-            </div>
-          );
+          return <>{createLinks(route.children as RouteDefinition[])}</>;
         }
 
         return (

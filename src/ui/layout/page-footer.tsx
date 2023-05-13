@@ -1,6 +1,6 @@
 import type * as React from 'react';
 import { Container, Flex, Stack, Text } from '@chakra-ui/react';
-import { Logo } from 'src/ui/assets/logo';
+import { Logo } from 'ui/assets/logo';
 
 const PageFooter: React.FC = () => {
   return (

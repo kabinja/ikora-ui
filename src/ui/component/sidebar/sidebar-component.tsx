@@ -2,7 +2,7 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 import type React from 'react';
 
 import { SidebarContent } from './sidebar-content';
-import { type RouteDefinition } from 'src/routing';
+import { type RouteDefinition } from 'routing';
 
 interface SidebarProps {
   logoText: string;
@@ -21,8 +21,7 @@ const Sidebar = ({ logoText, routes }: SidebarProps): React.ReactElement => {
         <Box
           bg={sidebarBg}
           transition={variantChange}
-          w="260px"
-          maxW="260px"
+          width="120px"
           ms={{
             sm: '16px',
           }}

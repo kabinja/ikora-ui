@@ -1,8 +1,8 @@
 import type React from 'react';
-import { TableComponent } from 'src/ui/component/table';
+import { TableComponent } from 'ui/component/table';
 import { useMemo, useState } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
-import { useGet } from 'src/api';
+import { useGet } from 'api';
 
 interface IJsonResponse {
   data: ISuiteData[];

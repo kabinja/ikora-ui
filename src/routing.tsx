@@ -1,7 +1,7 @@
 import type * as React from 'react';
 import { Spinner } from '@chakra-ui/react';
 import { Suspense, lazy } from 'react';
-import { MainLayout } from 'src/ui/layout/main-layout';
+import { MainLayout } from 'ui/layout/main-layout';
 import { FaBook, FaHistory, FaHome, FaRegistered, FaTree, FaUser } from 'react-icons/fa';
 
 interface RouteDefinition {
@@ -27,19 +27,19 @@ const Loadable = (Component: React.ComponentType) => (props: JSX.IntrinsicAttrib
 };
 
 // *  AUTHENTICATION PAGES
-const Login = Loadable(lazy(async () => await import('./pages/auth/login')));
-const Register = Loadable(lazy(async () => await import('./pages/auth/register')));
+const Login = Loadable(lazy(async () => await import('pages/auth/login')));
+const Register = Loadable(lazy(async () => await import('pages/auth/register')));
 
 //  * HOME PAGE
-const Home = Loadable(lazy(async () => await import('./pages/home')));
+const Home = Loadable(lazy(async () => await import('pages/home')));
 
 //  * FEATURE PAGES
-const SuiteOverview = Loadable(lazy(async () => await import('./pages/suite/overview')));
-const SuiteHistory = Loadable(lazy(async () => await import('./pages/suite/history')));
-const ExecutionTree = Loadable(lazy(async () => await import('./pages/execution/tree')));
+const SuiteOverview = Loadable(lazy(async () => await import('pages/suite/overview')));
+const SuiteHistory = Loadable(lazy(async () => await import('pages/suite/history')));
+const ExecutionTree = Loadable(lazy(async () => await import('pages/execution/tree')));
 
 // ERROR PAGES
-const Error404 = Loadable(lazy(async () => await import('./pages/error/not-found')));
+const Error404 = Loadable(lazy(async () => await import('pages/error/not-found')));
 
 const routes: RouteDefinition[] = [
   {
