@@ -92,14 +92,12 @@ const routes: RouteDefinition[] = [
         path: 'execution',
         children: [
           {
-            navbar: true,
             name: 'Hisotry',
             path: 'history/:id',
             icon: <FaHistory />,
             element: <SuiteHistory />,
           },
           {
-            navbar: true,
             name: 'Tree',
             path: 'tree',
             icon: <FaTree />,
@@ -116,4 +114,16 @@ const routes: RouteDefinition[] = [
   },
 ];
 
-export { routes, type RouteDefinition };
+
+const joinPath = (...args: string[]): string => {
+  return args.map((part, i) => {
+    if (i === 0) {
+      return part.trim().replace(/[\/]*$/g, '')
+    } else {
+      return part.trim().replace(/(^[\/]*|[\/]*$)/g, '')
+    }
+  }).filter(x => x.length).join('/');
+}
+
+
+export { routes, joinPath, type RouteDefinition };

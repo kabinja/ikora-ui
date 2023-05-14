@@ -1,8 +1,8 @@
-import { Box, Button, Flex, Icon, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Icon, LinkBox, StackDivider, Text, VStack, useColorModeValue } from '@chakra-ui/react';
 import { IconBox } from 'ui/component/icon-box';
 import type React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { type RouteDefinition } from 'routing';
+import { joinPath, type RouteDefinition } from 'routing';
 
 interface SidebarContentProps {
   logoText: string;
@@ -11,13 +11,12 @@ interface SidebarContentProps {
 
 const SidebarContent = (props: SidebarContentProps): React.ReactElement => {
   const location = useLocation();
-  const activeBg = useColorModeValue('white', 'gray.700');
-  const inactiveBg = useColorModeValue('white', 'gray.700');
   const activeColor = useColorModeValue('gray.700', 'white');
   const inactiveColor = useColorModeValue('gray.400', 'gray.400');
 
-  const activeRoute = (routeName: string): string => {
-    return location.pathname === routeName ? 'active' : '';
+  const isActive = (routeName: string): boolean => {
+    const currentPath = location.pathname.trimStart().replace(/^[\/]/g, '');
+    return currentPath === routeName;
   };
 
   const isCategory = (route: RouteDefinition): boolean => {
@@ -27,111 +26,50 @@ const SidebarContent = (props: SidebarContentProps): React.ReactElement => {
     return route.children.length > 0;
   };
 
-  const createLinks = (routes: RouteDefinition[]): React.ReactElement[] => {
+  const createLinks = (routes: RouteDefinition[], path: string = ""): React.ReactElement[] => {
     return routes
       .filter((route) => route.navbar)
       .map((route) => {
+        path = joinPath(path, route.path === undefined ? "" : route.path);
+
         if (isCategory(route)) {
-          return <>{createLinks(route.children as RouteDefinition[])}</>;
+          return <>{createLinks(route.children as RouteDefinition[], path)}</>;
         }
 
         return (
-          <NavLink to={route.path as string} key={route.name}>
-            {activeRoute(route.path as string) === 'active' ? (
-              <Button
-                boxSize="initial"
-                justifyContent="flex-start"
-                alignItems="center"
-                bg={activeBg}
-                mb={{
-                  xl: '12px',
-                }}
-                mx={{
-                  xl: 'auto',
-                }}
-                ps={{
-                  sm: '10px',
-                  xl: '16px',
-                }}
-                py="12px"
-                borderRadius="15px"
-                w="100%"
-                _active={{
-                  bg: 'inherit',
-                  transform: 'none',
-                  borderColor: 'transparent',
-                }}
-                _focus={{
-                  boxShadow: 'none',
-                }}
-              >
-                <Flex>
-                  {typeof route.icon === 'string' ? (
-                    <Icon>{route.icon}</Icon>
-                  ) : (
-                    <IconBox bg="teal.300" color="white" h="30px" w="30px" me="12px">
-                      {route.icon}
-                    </IconBox>
-                  )}
-                  <Text color={activeColor} my="auto" fontSize="sm">
-                    {route.name}
-                  </Text>
-                </Flex>
-              </Button>
-            ) : (
-              <Button
-                boxSize="initial"
-                justifyContent="flex-start"
-                alignItems="center"
-                bg="transparent"
-                mb={{
-                  xl: '12px',
-                }}
-                mx={{
-                  xl: 'auto',
-                }}
-                py="12px"
-                ps={{
-                  sm: '10px',
-                  xl: '16px',
-                }}
-                borderRadius="15px"
-                w="100%"
-                _active={{
-                  bg: 'inherit',
-                  transform: 'none',
-                  borderColor: 'transparent',
-                }}
-                _focus={{
-                  boxShadow: 'none',
-                }}
-              >
-                <Flex>
-                  {typeof route.icon === 'string' ? (
-                    <Icon>{route.icon}</Icon>
-                  ) : (
-                    <IconBox bg={inactiveBg} color="teal.300" h="30px" w="30px" me="12px">
-                      {route.icon}
-                    </IconBox>
-                  )}
-                  <Text color={inactiveColor} my="auto" fontSize="sm">
-                    {route.name}
-                  </Text>
-                </Flex>
-              </Button>
-            )}
-          </NavLink>
+          <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'>
+            <NavLink to={path} key={route.name}>
+              <Flex>
+                {typeof route.icon === 'string' ? (
+                  <Icon>{route.icon}</Icon>
+                ) : (
+                  <IconBox bg="teal.300" color="white" h="30px" w="30px" me="12px">
+                    {route.icon}
+                  </IconBox>
+                )}
+                <Text
+                  color={isActive(path) ? activeColor : inactiveColor}
+                  my="auto"
+                  fontSize="sm"
+                  decoration="none"
+                >
+                  {route.name}
+                </Text>
+              </Flex>
+            </NavLink>
+          </LinkBox>
         );
       });
   };
 
-  const links = <>{createLinks(props.routes)}</>;
-
   return (
     <>
-      <Stack direction="column" mb="40px">
-        <Box>{links}</Box>
-      </Stack>
+      <VStack
+        divider={<StackDivider borderColor='gray.200' />}
+        align='stretch'
+      >
+        {createLinks(props.routes)}
+      </VStack>
     </>
   );
 };
