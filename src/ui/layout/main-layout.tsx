@@ -10,7 +10,10 @@ import { routes } from 'routing';
 const MainLayout: React.FC = (): React.ReactElement => {
   return (
     <>
-      <Sidebar routes={routes} logoText={'IKORA'} />
+      <Sidebar
+        routes={routes}
+        logoText={'IKORA'}
+      />
       <MainPanel
         w={{
           base: '100%',

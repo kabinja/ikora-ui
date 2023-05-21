@@ -15,7 +15,7 @@ const SidebarContent = (props: SidebarContentProps): React.ReactElement => {
   const inactiveColor = useColorModeValue('gray.400', 'gray.400');
 
   const isActive = (routeName: string): boolean => {
-    const currentPath = location.pathname.trimStart().replace(/^[\/]/g, '');
+    const currentPath = location.pathname.trimStart().replace(/^[/]/g, '');
     return currentPath === routeName;
   };
 
@@ -26,24 +26,39 @@ const SidebarContent = (props: SidebarContentProps): React.ReactElement => {
     return route.children.length > 0;
   };
 
-  const createLinks = (routes: RouteDefinition[], path: string = ""): React.ReactElement[] => {
+  const createLinks = (routes: RouteDefinition[], path = ''): React.ReactElement[] => {
     return routes
       .filter((route) => route.navbar)
       .map((route) => {
-        path = joinPath(path, route.path === undefined ? "" : route.path);
+        path = joinPath(path, route.path === undefined ? '' : route.path);
 
         if (isCategory(route)) {
           return <>{createLinks(route.children as RouteDefinition[], path)}</>;
         }
 
         return (
-          <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'>
-            <NavLink to={path} key={route.name}>
+          <LinkBox
+            as="article"
+            maxW="sm"
+            p="5"
+            borderWidth="1px"
+            rounded="md"
+          >
+            <NavLink
+              to={path}
+              key={route.name}
+            >
               <Flex>
                 {typeof route.icon === 'string' ? (
                   <Icon>{route.icon}</Icon>
                 ) : (
-                  <IconBox bg="teal.300" color="white" h="30px" w="30px" me="12px">
+                  <IconBox
+                    bg="teal.300"
+                    color="white"
+                    h="30px"
+                    w="30px"
+                    me="12px"
+                  >
                     {route.icon}
                   </IconBox>
                 )}
@@ -65,8 +80,8 @@ const SidebarContent = (props: SidebarContentProps): React.ReactElement => {
   return (
     <>
       <VStack
-        divider={<StackDivider borderColor='gray.200' />}
-        align='stretch'
+        divider={<StackDivider borderColor="gray.200" />}
+        align="stretch"
       >
         {createLinks(props.routes)}
       </VStack>

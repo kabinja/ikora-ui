@@ -10,7 +10,10 @@ interface MainPanelProps extends ChakraProps {
 const MainPanel = ({ variant, children, ...rest }: MainPanelProps): React.ReactElement => {
   const styles = useStyleConfig('MainPanel', { variant });
   return (
-    <Box __css={styles} {...rest}>
+    <Box
+      __css={styles}
+      {...rest}
+    >
       {children}
     </Box>
   );

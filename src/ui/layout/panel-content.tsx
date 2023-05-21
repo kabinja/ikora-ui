@@ -11,7 +11,10 @@ const PanelContent = (props: PanelContentProps): React.ReactElement => {
   const { variant, children, ...rest } = props;
   const styles = useStyleConfig('PanelContent', { variant });
   return (
-    <Box __css={styles} {...rest}>
+    <Box
+      __css={styles}
+      {...rest}
+    >
       {children}
     </Box>
   );

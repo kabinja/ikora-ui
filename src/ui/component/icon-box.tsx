@@ -7,7 +7,12 @@ interface IconBoxProps extends ChakraProps {
 
 const IconBox = ({ children, ...rest }: IconBoxProps): React.ReactElement => {
   return (
-    <Flex alignItems={'center'} justifyContent={'center'} borderRadius={'12px'} {...rest}>
+    <Flex
+      alignItems={'center'}
+      justifyContent={'center'}
+      borderRadius={'12px'}
+      {...rest}
+    >
       {children}
     </Flex>
   );

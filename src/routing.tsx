@@ -14,7 +14,15 @@ interface RouteDefinition {
 }
 
 const Loading = (): React.ReactElement => {
-  return <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />;
+  return (
+    <Spinner
+      thickness="4px"
+      speed="0.65s"
+      emptyColor="gray.200"
+      color="blue.500"
+      size="xl"
+    />
+  );
 };
 
 // eslint-disable-next-line react/display-name
@@ -114,16 +122,17 @@ const routes: RouteDefinition[] = [
   },
 ];
 
-
 const joinPath = (...args: string[]): string => {
-  return args.map((part, i) => {
-    if (i === 0) {
-      return part.trim().replace(/[\/]*$/g, '')
-    } else {
-      return part.trim().replace(/(^[\/]*|[\/]*$)/g, '')
-    }
-  }).filter(x => x.length).join('/');
-}
-
+  return args
+    .map((part, i) => {
+      if (i === 0) {
+        return part.trim().replace(/[/]*$/g, '');
+      } else {
+        return part.trim().replace(/(^[/]*|[/]*$)/g, '');
+      }
+    })
+    .filter((x) => x.length)
+    .join('/');
+};
 
 export { routes, joinPath, type RouteDefinition };

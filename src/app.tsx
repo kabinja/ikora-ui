@@ -8,7 +8,10 @@ export const App: React.FC = () => {
   const content = useRoutes(routes);
 
   return (
-    <ChakraProvider theme={theme} resetCSS={false}>
+    <ChakraProvider
+      theme={theme}
+      resetCSS={false}
+    >
       {content}
     </ChakraProvider>
   );

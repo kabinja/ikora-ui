@@ -24,8 +24,17 @@ const Pagination = ({ pageChangeHandler, currentPage, totalPage }: PaginationPro
   return (
     <>
       {totalPage > 1 ? (
-        <Stack direction="row" mt="8" justify="flex-end" align="center" spacing="6">
-          <Stack direction="row" spacing="2">
+        <Stack
+          direction="row"
+          mt="8"
+          justify="flex-end"
+          align="center"
+          spacing="6"
+        >
+          <Stack
+            direction="row"
+            spacing="2"
+          >
             <PaginationItem
               key="back"
               isCurrent={false}

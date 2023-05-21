@@ -17,7 +17,10 @@ const Sidebar = ({ logoText, routes }: SidebarProps): React.ReactElement => {
 
   return (
     <Box>
-      <Box display={{ sm: 'none', xl: 'block' }} position="fixed">
+      <Box
+        display={{ sm: 'none', xl: 'block' }}
+        position="fixed"
+      >
         <Box
           bg={sidebarBg}
           transition={variantChange}
@@ -34,7 +37,10 @@ const Sidebar = ({ logoText, routes }: SidebarProps): React.ReactElement => {
           m={sidebarMargins}
           borderRadius={sidebarRadius}
         >
-          <SidebarContent routes={routes} logoText={logoText} />
+          <SidebarContent
+            routes={routes}
+            logoText={logoText}
+          />
         </Box>
       </Box>
     </Box>

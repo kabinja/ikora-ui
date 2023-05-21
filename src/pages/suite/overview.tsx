@@ -82,7 +82,12 @@ const TableBuilder = (props: TableBuilderProps): React.ReactElement => {
   if (error !== '') return <p>{error}</p>;
   if (data == null) return <p>Data was null</p>;
 
-  return <SuiteTable pageChangeHandler={props.pageChangeHandler} {...data} />;
+  return (
+    <SuiteTable
+      pageChangeHandler={props.pageChangeHandler}
+      {...data}
+    />
+  );
 };
 
 const SuiteOverview: React.FC = () => {
@@ -92,7 +97,12 @@ const SuiteOverview: React.FC = () => {
     setUrl(`http://localhost:3030/overview/${page}`);
   };
 
-  return <TableBuilder url={url} pageChangeHandler={updatePage} />;
+  return (
+    <TableBuilder
+      url={url}
+      pageChangeHandler={updatePage}
+    />
+  );
 };
 
 export default SuiteOverview;

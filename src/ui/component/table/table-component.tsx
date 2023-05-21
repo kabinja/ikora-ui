@@ -38,7 +38,10 @@ const TableComponent = <T extends object>({
           {table.getHeaderGroups().map((headerGroup) => (
             <Tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <Th key={header.id} className="px-6 py-4 text-sm font-medium text-gray-900">
+                <Th
+                  key={header.id}
+                  className="px-6 py-4 text-sm font-medium text-gray-900"
+                >
                   {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                 </Th>
               ))}
@@ -47,9 +50,15 @@ const TableComponent = <T extends object>({
         </Thead>
         <Tbody>
           {table.getRowModel().rows.map((row) => (
-            <Tr key={row.id} className='border-b" bg-white'>
+            <Tr
+              key={row.id}
+              className='border-b" bg-white'
+            >
               {row.getVisibleCells().map((cell) => (
-                <Td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900" key={cell.id}>
+                <Td
+                  className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900"
+                  key={cell.id}
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </Td>
               ))}
@@ -57,7 +66,11 @@ const TableComponent = <T extends object>({
           ))}
         </Tbody>
       </Table>
-      <Pagination pageChangeHandler={onPageChange} currentPage={currentPage} totalPage={totalPage} />
+      <Pagination
+        pageChangeHandler={onPageChange}
+        currentPage={currentPage}
+        totalPage={totalPage}
+      />
     </TableContainer>
   );
 };
